@@ -7,6 +7,9 @@
 
 using namespace std; 
         
+/*
+  g++ *.cpp -o main && ./main
+*/
 class Semaphore {
   public:
     Semaphore (int valeur_initiale)
