@@ -6,7 +6,7 @@
 #include <condition_variable>
 
 using namespace std; 
-        
+
 class Semaphore {
   public:
     Semaphore (int valeur_initiale)
@@ -19,7 +19,7 @@ class Semaphore {
     inline void V ( int tid ) {
       std::unique_lock<std::mutex> lock(mtx);
       val++;
-      //cout << "processus " << tid <<  " V" << endl;
+      cout << "processus " << tid <<  " V" << endl;
       //déblocage d'un processus bloqué (si il en existe)
       cv.notify_one();
     }
@@ -27,10 +27,10 @@ class Semaphore {
     inline void P ( int tid ) {
       std::unique_lock<std::mutex> lock(mtx);
       while(val == 0) {
-        //cout << "processus " << tid << " P" << endl;
+        cout << "processus " << tid << " P" << endl;
         //attente jusqu'à invocation d'un V() -> blocage du processus appelant
         cv.wait(lock);
-        //cout << "processus " << tid << " reprend" << endl;
+        cout << "processus " << tid << " reprend" << endl;
       }
       val--;
     }
